@@ -1,0 +1,20 @@
+{% extends 'customers/layout.html' %}
+
+{% block title %}
+    Basic Bank System
+{% endblock %}
+
+{% block body %}
+    <h1>All Users</h1>
+    <ul>
+        {% for user in users %}
+            <li>
+                <a href="{% url 'user' user.id %}">{{ user }}</a>
+            </li>
+        {% empty %}
+            <li>No Users</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'addUser' %}"> Add User </a><br>
+    <a href="{% url 'transactions' %}"> All Transfers </a>
+{% endblock %}

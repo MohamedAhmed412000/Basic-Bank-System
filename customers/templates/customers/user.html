@@ -1,0 +1,11 @@
+{% extends 'customers/layout.html' %}
+
+{% block body %}
+    <h1> User info:- </h1>
+    <ul>
+        <li> User Name: {{ user }} </li>
+        <li> Email: {{ user.email }} </li>
+        <li> User Balance: {{ user.balance }} </li>
+    </ul>
+    <a href="{% url 'index' %}"> Back to Index </a>
+{% endblock %}
