@@ -1,11 +1,59 @@
 {% extends 'customers/layout.html' %}
+{% load static %}
 
-{% block body %}
-    <h1> User info:- </h1>
-    <ul>
-        <li> User Name: {{ user }} </li>
-        <li> Email: {{ user.email }} </li>
-        <li> User Balance: {{ user.balance }} </li>
-    </ul>
-    <a href="{% url 'index' %}"> Back to Index </a>
+{% block title %}
+    {{ user }}
+{% endblock %}
+
+{% block rightbody %}
+    <div class="album py-5 bg-light">
+        <h1 style="display: inline;"> &nbsp;&nbsp;&nbsp;User Info: </h1>
+        <a class="btn btn-outline-secondary btn-sm" style="position: relative; bottom: -0.6rem; float: right;"
+            href="{% url 'editUser' user.id %}"> Edit User Data </a>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <img src="{% static 'customers/images/avatar.jpg' %}" alt="">
+            </div>
+            <div class="col-9">
+                <br><br>
+                <h2 style="text-decoration: underline;"> {{ user }} </h2><br>
+                <img src="{% static 'customers/images/email.svg' %}" style="margin-bottom: 5px;" width="35rem">
+                <h4 style="display: inline;"> &nbsp; {{ user.email }} </h4><br>
+                <img src="{% static 'customers/images/wallet.svg' %}" style="margin-bottom: 10px;" width="35rem">
+                <h4 style="display: inline;"> &nbsp; {{ user.balance }} LE </h4><br>
+                <img src="{% static 'customers/images/time.svg' %}" style="margin-bottom: 10px;" width="35rem">
+                <h4 style="display: inline-block;"> &nbsp; {{ user.time }} </h4>
+            </div>
+        </div><br><br>
+        <h1 style="display: inline;"> &nbsp;&nbsp;&nbsp;Transfers: </h1>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"> Sender </th>
+                    <th scope="col"> Receiver </th>
+                    <th scope="col"> Balance </th>
+                    <th scope="col"> Time </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transfer in transfers %}
+                    <tr>
+                        <td scope="row"> {{ transfer.sender }} </td>
+                        <td scope="row"> {{ transfer.receiver }} </td>
+                        <td scope="row"> {{ transfer.value }} LE </td>
+                        <td scope="row"> {{ transfer.time }} </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">
+                            No Transfers
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}

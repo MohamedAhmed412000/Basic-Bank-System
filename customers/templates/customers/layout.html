@@ -5,14 +5,48 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="{% static 'customers/favicon.png' %}">
-    <link rel="stylesheet" href="{% static 'customers/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'customers/style.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'customers/bootstrap.min.css' %}">
     <title>
         {% block title %}
         {% endblock %}
     </title>
 </head>
 <body>
-    {% block body %}
+    <!-- This is Navigation Bar -->
+    <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+        <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- Logo -->
+            <a href="{% url 'index' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="{% static 'customers/favicon.png' %}" width="40" alt="Basic Bank System">
+            </a>
+            <!-- List Navbar -->
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li class="nav-link px-2 text-dark"></li>
+            <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Home</a></li>
+            <li><a href="{% url 'users' %}" class="nav-link px-2 text-white">Users</a></li>
+            <li><a href="{% url 'transactions' %}" class="nav-link px-2 text-white">Transfers</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+            </ul>
+            <!-- Search -->
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                <input type="search" name="user" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+            </form>
+        </div>
+        </div>
+    </header>
+    <!-- Body list and rightpart -->
+    <div class="container">
+        <div class="row">
+            {% block leftbody %}
+            {% endblock %}
+            {% block rightbody %}
+            {% endblock %}
+        </div>
+    </div>
+    {% block script %}
     {% endblock %}
 </body>
 </html>

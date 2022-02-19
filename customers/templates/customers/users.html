@@ -1,0 +1,40 @@
+{% extends 'customers/layout.html' %}
+{% load static %}
+
+{% block title %}
+    All Users
+{% endblock %}
+
+{% block leftbody %}
+    <div class="album py-5 bg-light">
+        <h1 style="display: inline;"> &nbsp;&nbsp;&nbsp;All Users </h1>
+        <a class="btn btn-outline-secondary btn-sm" style="position: relative; bottom: -0.6rem; float: right;"
+            href="{% url 'addUser' %}"> Add new User</a>
+        <hr>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for user in users %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ user }}</h5>
+                            <img src="{% static 'customers/images/email.svg' %}" style="margin-bottom: 5px;" width="20rem">
+                            <p class="card-text" style="display: inline;"> &nbsp;{{ user.email }} </p><br>
+                            <img src="{% static 'customers/images/wallet.svg' %}" style="margin-bottom: 5px;" width="20rem">
+                            <p class="card-text" style="display: inline-block;"> &nbsp;{{ user.balance }} LE </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'user' user.id %}">View</a>
+                                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'editUser' user.id %}">Edit</a>
+                                    <a class="btn btn-sm btn-outline-danger" href="{% url 'deleteUser' user.id %}">Delete</a>
+                                </div>
+                                <small class="text-muted">{{ user.time }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

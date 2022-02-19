@@ -1,12 +1,50 @@
 {% extends 'customers/layout.html' %}
 
-{% block body %}
-    <h1> Add new User:- </h1>
-    <form action="{% url 'addUser' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Add new user">
-    </form>
-    <br>
-    <a href="{% url 'index' %}"> Back to Index </a>
+{% block title %}
+    Add New User
+{% endblock %}
+
+
+
+{% block leftbody %}
+    <div class="album py-5 bg-light">
+        <h1> {{ title }}: </h1><hr>
+        {% if action == "addUser" %}
+        <form action="{% url 'addUser' %}" method="post">
+        {% else %}
+        <form action="{% url 'editUser' id %}" method="post">
+        {% endif %}
+            {% csrf_token %}<br>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-light bg-dark" id="">First and last name</span>
+                </div>
+                {{ form.first }}
+                {{ form.last }}
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-light bg-dark" id="">Email</span>
+                </div>
+                {{ form.email }}
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-light bg-dark" id="">Balance</span>
+                </div>
+                {{ form.balance }}
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-light bg-dark" id="">Time</span>
+                </div>
+                {% if time == "" %}
+                  <input type="datetime-local" class="form-control" value="" placeholder="Time" name="time" required>
+                {% else %}
+                  <input type="datetime-local" class="form-control" value="{{ time }}" placeholder="Time" name="time" {{ required }}>
+                {% endif %}
+            </div><br>
+            <input class="btn btn-outline-dark" type="submit" value="{{ title }}" style="float: right;">
+        </form>
+    </div>
 {% endblock %}
