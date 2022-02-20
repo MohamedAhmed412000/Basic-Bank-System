@@ -149,7 +149,7 @@ def search(request):
     if request.method == "POST":
         search = request.POST["user"]
         users = User.objects.filter(Q(first__contains=search) | Q(last__contains=search))
-        return render(request, "customers/searchresults.html", {
+        return render(request, "customers/searchResults.html", {
             "users": users,
             "search": search
         })
