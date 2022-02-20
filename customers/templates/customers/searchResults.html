@@ -8,8 +8,6 @@
 {% block leftbody %}
     <div class="album py-5 bg-light">
         <h1 style="display: inline;"> &nbsp;&nbsp;&nbsp;Search Result for "{{ search }}" </h1>
-        <!-- <a class="btn btn-outline-secondary btn-sm" style="position: relative; bottom: -0.6rem; float: right;"
-            href="{% url 'addUser' %}"> Add new User</a> -->
         <hr>
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -33,6 +31,8 @@
                         </div>
                     </div>
                 </div>
+                {% empty %}
+                <h2> No Search Results </h2>
                 {% endfor %}
             </div>
         </div>
