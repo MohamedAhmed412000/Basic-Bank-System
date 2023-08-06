@@ -1,4 +1,5 @@
 python --version
+pip install venv
 python -m venv env
 env\scripts\activate
 pip install -r requirements_local.txt
