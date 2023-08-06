@@ -1,4 +1,4 @@
-python --version
+python3 --version
 pip install venv
 python -m venv env
 env\scripts\activate
