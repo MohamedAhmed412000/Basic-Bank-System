@@ -128,3 +128,4 @@ dmypy.json
 .pyre/
 
 steps.txt
+.vercel
