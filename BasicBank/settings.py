@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from decouple import  config
 from pathlib import Path
-from dj_database_url import parse as dburl
+import dj_database_url
 import os
 
 
@@ -77,10 +77,18 @@ WSGI_APPLICATION = 'BasicBank.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+# default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+# DATABASES = {
+#     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+# }
+
+# Parse the DATABASE_URL to extract the connection details
 DATABASES = {
-    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+    'default': dj_database_url.config(
+        default='postgres://yousowfv:ME0cs_gUrMtMCEisiNLyxJOw36NouXN_@surus.db.elephantsql.com/yousowfv'
+    )
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
