@@ -84,9 +84,14 @@ WSGI_APPLICATION = 'BasicBank.wsgi.application'
 
 # Parse the DATABASE_URL to extract the connection details
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://yousowfv:ME0cs_gUrMtMCEisiNLyxJOw36NouXN_@surus.db.elephantsql.com/yousowfv'
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASS'),
+        'HOST': 'surus.db.elephantsql.com',
+        'PORT': '5432',
+    }
 }
 
 
