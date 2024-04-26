@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'BasicBank.wsgi.application'
 # Parse the DATABASE_URL to extract the connection details
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASS'),
