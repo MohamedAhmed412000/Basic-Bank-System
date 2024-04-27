@@ -1,7 +1,3 @@
-ls ../..
-echo "finished first ls"
-ls ../../bin
-echo "finished second ls"
 yum install python3-devel
 echo "finished installing python3-dev"
 python3.9 -m venv env
