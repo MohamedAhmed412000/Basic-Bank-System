@@ -1,6 +1,6 @@
-ls ..
+ls ../..
 echo "finished first ls"
-ls ../bin
+ls ../../bin
 echo "finished second ls"
 python3.9 -m venv env
 source env/bin/activate
